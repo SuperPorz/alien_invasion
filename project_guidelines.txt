@@ -1,0 +1,16 @@
+Alien Invasion
+
+- Il giocatore controlla un'astronave che appare in fondo alla schermata,
+    al centro, può essere spostata a destra e a sinistra premendo i tasti
+    'freccia' e spara proiettili premendo 'spazio'.
+
+- All'inizio del gioco, una flotta di alieni occupa il cielo e inizia a
+    scendere verso il basso. 
+    
+- Il giocatore spara e distrugge gli alieni; se li ditrugge tutti appare
+    una nuova flotta che si sposta più velocemente della precedente;
+
+- Se un alieno colpisce l'astronave del giocatore o raggiunge il fondo dello
+    schermo, il giocatore perde una nave (vita);
+
+- Se il giocatore perde 3 navi (3 vite) il gioco finisce.
