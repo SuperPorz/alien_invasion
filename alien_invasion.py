@@ -12,6 +12,9 @@ class AlienInvasion:
         self.screen = pygame.display.set_mode((1200, 800))
         pygame.display.set_caption("Alien Invasion")
         
+        # Imposta il colore di sfondo
+        self.bg_color = (230, 230, 230)
+        
     def run_game(self):
         '''Avvia il ciclo principale del gioco'''
         while True:
@@ -19,6 +22,9 @@ class AlienInvasion:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     sys.exit()
+            
+            # ridisegna la schermata a ogni iterazione del ciclo
+            self.screen.fill(self.bg_color)
             
             # rende visibile la schermata disegnata più recentemente
             pygame.display.flip()
