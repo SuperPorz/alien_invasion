@@ -1,5 +1,6 @@
 import sys
 import pygame
+from settings import Settings
 
 class AlienInvasion:
     '''Classe generale per gestire risorse e comportamenti del gioco'''
@@ -8,12 +9,11 @@ class AlienInvasion:
         '''Inizializza il gioco e crea le risorse necessarie'''
         pygame.init()
         self.clock = pygame.time.Clock()
+        self.settings = Settings()
 
-        self.screen = pygame.display.set_mode((1200, 800))
+        self.screen = pygame.display.set_mode(
+            self.settings.screen_width, self.settings.screen_height)
         pygame.display.set_caption("Alien Invasion")
-        
-        # Imposta il colore di sfondo
-        self.bg_color = (230, 230, 230)
         
     def run_game(self):
         '''Avvia il ciclo principale del gioco'''
@@ -24,7 +24,7 @@ class AlienInvasion:
                     sys.exit()
             
             # ridisegna la schermata a ogni iterazione del ciclo
-            self.screen.fill(self.bg_color)
+            self.screen.fill(self.settings.bg_color)
             
             # rende visibile la schermata disegnata più recentemente
             pygame.display.flip()
