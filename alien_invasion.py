@@ -11,30 +11,33 @@ class AlienInvasion:
         pygame.init()
         self.clock = pygame.time.Clock()
         self.settings = Settings()
-
         self.screen = pygame.display.set_mode((self.settings.screen_width, 
-                                              self.settings.screen_height))
+            self.settings.screen_height))
         pygame.display.set_caption("Alien Invasion")
-        
         self.ship = Ship(self)
         
     def run_game(self):
         '''Avvia il ciclo principale del gioco'''
         while True:
-            # attendi eventi del mouse e della tastiera
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    sys.exit()
-            
-            # ridisegna la schermata a ogni iterazione del ciclo
-            self.screen.fill(self.settings.bg_color)
-            self.ship.blitme()
-            
-            # rende visibile la schermata disegnata più recentemente
-            pygame.display.flip()
+            self._check_events()
+            self._update_screen()
             self.clock.tick(60)
-            
-            
+    
+    def _check_events(self):
+        '''Risponde a eventi della tastyiera e del mouse'''
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+    
+    def _update_screen(self):
+        '''Aggiorna le immagini sulla schermata e passa a quella nuova'''
+        # ridisegna la schermata a ogni iterazione del ciclo
+        self.screen.fill(self.settings.bg_color)
+        self.ship.blitme()
+        
+        # rende visibile la schermata disegnata più recentemente
+        pygame.display.flip()
+
 if __name__ == '__main__':
     # crea un'istanza del gioco e lo esegue
     ai = AlienInvasion()
