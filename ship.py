@@ -14,6 +14,14 @@ class Ship:
         
         # avvia ogni nuova nave in fondo allo schermo, al centro (posizione iniziale)
         self.rect.midbottom = self.screen_rect.midbottom
+        
+        # flag del movimento; inizia con una nave che non si muove
+        self.moving_right = False
+        
+    def update(self):
+        '''Aggiorna la posizione della nave in base al flag del movimento'''
+        if self.moving_right:
+            self.rect.x += 1
     
     def blitme(self):
         '''Disegna la nave nella sua posizione corrente'''
