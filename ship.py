@@ -17,11 +17,14 @@ class Ship:
         
         # flag del movimento; inizia con una nave che non si muove
         self.moving_right = False
+        self.moving_left = False
         
     def update(self):
         '''Aggiorna la posizione della nave in base al flag del movimento'''
         if self.moving_right:
             self.rect.x += 1
+        if self.moving_left:
+            self.rect.x -= 1
     
     def blitme(self):
         '''Disegna la nave nella sua posizione corrente'''
