@@ -10,4 +10,4 @@ class Settings:
         self.bg_color = (230, 230, 230)
         
         # impostazioni della nave
-        self.ship_speed = 1.5 #oss: rect() lavora solo con numeri interi di pixel
+        self.ship_speed = 3.5 #oss: rect() lavora solo con numeri interi di pixel
