@@ -20,6 +20,7 @@ class AlienInvasion:
         # memorizza gruppo di proiettili sparati 
         self.bullets = pygame.sprite.Group()
         
+        # OPZIONI FULLSCREEN (ora disattivate)
         #self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
         #self.settings.screen_width = self.screen.get_rect().width
         #self.settings.screen_height = self.screen.get_rect().height
@@ -29,14 +30,7 @@ class AlienInvasion:
         while True:
             self._check_events()
             self.ship.update()
-            self.bullets.update()
-            
-            # elimina proiettili che escono dalla schermata
-            for item in self.bullets.copy():
-                if item.rect.bottom <= 0:
-                    self.bullets.remove(item)
-            #print(len(self.bullets))
-            
+            self._update_bullets()
             self._update_screen()
             self.clock.tick(60)
     
@@ -73,7 +67,19 @@ class AlienInvasion:
         if len(self.bullets) < self.settings.bullets_allowed:
             new_bullet = Bullet(self) #creiamo istanza di bullet
             self.bullets.add(new_bullet)
-                
+    
+    def _update_bullets(self):
+        '''Aggiorna la posizione dei proiettili ed elimina quelli vecchi'''
+        
+        #aggiorna pos. proiettili
+        self.bullets.update()
+        
+        # elimina proiettili che escono dalla schermata
+        for item in self.bullets.copy():
+            if item.rect.bottom <= 0:
+                self.bullets.remove(item)
+        #print(len(self.bullets))
+        
     
     def _update_screen(self):
         '''Aggiorna le immagini sulla schermata e passa a quella nuova'''
