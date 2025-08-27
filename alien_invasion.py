@@ -2,6 +2,7 @@ import sys
 import pygame
 from settings import Settings
 from ship import Ship
+from bullet import Bullet
 
 class AlienInvasion:
     '''Classe generale per gestire risorse e comportamenti del gioco'''
@@ -16,6 +17,9 @@ class AlienInvasion:
         pygame.display.set_caption("Alien Invasion")
         self.ship = Ship(self)
         
+        # memorizza gruppo di proiettili sparati 
+        self.bullets = pygame.sprite.Group()
+        
         #self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
         #self.settings.screen_width = self.screen.get_rect().width
         #self.settings.screen_height = self.screen.get_rect().height
@@ -25,6 +29,7 @@ class AlienInvasion:
         while True:
             self._check_events()
             self.ship.update()
+            self.bullets.update()
             self._update_screen()
             self.clock.tick(60)
     
@@ -46,23 +51,35 @@ class AlienInvasion:
             self.ship.moving_left = True
         elif event.key == pygame.K_ESCAPE:
             sys.exit()
+        elif event.key == pygame.K_SPACE:
+            self._fire_bullet()
+        
             
     def _check_keyup_events(self, event):
         if event.key == pygame.K_RIGHT:
             self.ship.moving_right = False
         elif event.key == pygame.K_LEFT:
             self.ship.moving_left = False
+    
+    def _fire_bullet(self):
+        '''Crea un nuovo proiettile e lo aggiunge al gruppo'''
+        new_bullet = Bullet(self) #creiamo istanza di bullet
+        self.bullets.add(new_bullet)
                 
     
     def _update_screen(self):
         '''Aggiorna le immagini sulla schermata e passa a quella nuova'''
         # ridisegna la schermata a ogni iterazione del ciclo
         self.screen.fill(self.settings.bg_color)
+        for bullet in self.bullets.sprites():
+            bullet.draw_bullet()
         self.ship.blitme()
         
         # rende visibile la schermata disegnata più recentemente
         pygame.display.flip()
 
+
+# CREAZIONE ISTANZA DEL GIOCO
 if __name__ == '__main__':
     # crea un'istanza del gioco e lo esegue
     ai = AlienInvasion()
