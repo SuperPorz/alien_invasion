@@ -30,6 +30,13 @@ class AlienInvasion:
             self._check_events()
             self.ship.update()
             self.bullets.update()
+            
+            # elimina proiettili che escono dalla schermata
+            for item in self.bullets.copy():
+                if item.rect.bottom <= 0:
+                    self.bullets.remove(item)
+            #print(len(self.bullets))
+            
             self._update_screen()
             self.clock.tick(60)
     
@@ -63,8 +70,9 @@ class AlienInvasion:
     
     def _fire_bullet(self):
         '''Crea un nuovo proiettile e lo aggiunge al gruppo'''
-        new_bullet = Bullet(self) #creiamo istanza di bullet
-        self.bullets.add(new_bullet)
+        if len(self.bullets) < self.settings.bullets_allowed:
+            new_bullet = Bullet(self) #creiamo istanza di bullet
+            self.bullets.add(new_bullet)
                 
     
     def _update_screen(self):
@@ -79,7 +87,7 @@ class AlienInvasion:
         pygame.display.flip()
 
 
-# CREAZIONE ISTANZA DEL GIOCO
+# CREAZIONE ISTANZA DEL GIOCO 
 if __name__ == '__main__':
     # crea un'istanza del gioco e lo esegue
     ai = AlienInvasion()

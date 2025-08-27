@@ -13,7 +13,7 @@ class Bullet(Sprite):
         
         # crea un rect del proiettile a (0, 0)
         self.rect = pygame.Rect(0, 0, self.settings.bullet_width,
-                                self.settings.bullet_height)
+                                self.settings.bullet_heigth)
         
         # imposta la pos. corretta
         self.rect.midtop = ai_game.ship.rect.midtop

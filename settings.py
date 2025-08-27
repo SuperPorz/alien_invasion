@@ -8,6 +8,7 @@ class Settings:
         self.screen_width = 1024
         self.screen_height = 600
         self.bg_color = (230, 230, 230)
+        self.bullets_allowed = 3 #max 3 proiettili nella schermata
         
         # impostazioni della nave
         self.ship_speed = 3.5 #oss: rect() lavora solo con numeri interi di pixel
