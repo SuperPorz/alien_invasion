@@ -12,6 +12,11 @@ class Settings:
         
         # impostazioni della nave
         self.ship_speed = 3.5 #oss: rect() lavora solo con numeri interi di pixel
+        self.ship_size = (80, 80)
+        
+        # impostazioni alieni
+        self.alien_size = (50, 80)
+        self.alien_img_rotation = 180
         
         # bullet settings
         self.bullet_speed = 2.0

@@ -10,7 +10,8 @@ class Ship:
         self.settings = ai_game.settings
         
         # carica l'immagine della nave e ne ottiene il rettangolo
-        self.image = pygame.image.load('images/spaceships/bgbattleship.bmp')
+        self.image = pygame.image.load('images/spaceships/bgbattleship.png')
+        self.image = pygame.transform.scale(self.image, self.settings.ship_size)
         self.rect = self.image.get_rect()
         
         # avvia ogni nuova nave in fondo allo schermo, al centro (posizione iniziale)
